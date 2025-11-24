@@ -1,0 +1,6 @@
+pandas
+numpy
+scikit-learn
+streamlit
+psycopg2-binary
+notebook
