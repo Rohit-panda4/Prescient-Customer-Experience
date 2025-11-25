@@ -4,3 +4,4 @@ scikit-learn
 streamlit
 psycopg2-binary
 notebook
+requests
