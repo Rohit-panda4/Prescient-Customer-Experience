@@ -15,3 +15,4 @@ if __name__ == "__main__":
     run_script("data_ingestion.py")
     run_script("data_preprocessing.py")
     run_script("model_training.py")
+    run_script("generate_predictions.py")

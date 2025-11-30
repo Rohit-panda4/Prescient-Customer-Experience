@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
+import joblib
 
 # Load the data
 try:
@@ -13,8 +14,8 @@ except FileNotFoundError:
     print("churn_data.csv not found. Please run data_ingestion.py first.")
     exit()
 
-# Separate target variable
-X = data.drop("Churn", axis=1)
+# Separate target variable and features
+X = data.drop(["Churn", "customerID"], axis=1)
 y = data["Churn"]
 
 # Identify categorical and numerical features
@@ -52,8 +53,12 @@ pd.DataFrame(X_test_preprocessed.toarray()).to_csv("X_test_preprocessed.csv", in
 y_train.to_csv("y_train.csv", index=False)
 y_test.to_csv("y_test.csv", index=False)
 
+# Save the preprocessor
+joblib.dump(preprocessor, 'preprocessor.pkl')
+
 print("Data preprocessing complete. Preprocessed data saved to:")
 print("- X_train_preprocessed.csv")
 print("- X_test_preprocessed.csv")
 print("- y_train.csv")
 print("- y_test.csv")
+print("Preprocessor saved to preprocessor.pkl")
